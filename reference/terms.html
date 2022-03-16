@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terms Overview</title>
+    <link rel="stylesheet" href="../index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="title">
+    Programming Terms
+</div>
+<div class="text">
+    <p><a href="../index.html"><< Back to main site</a> </p>
+    <hr>
+
+
+    <p><a href="#def">Definitions</a></p>
+
+    <p><a href="#test">Testing</a></p>
+
+    <p><a href="#oop">Object oriented Programming</a></p>
+    <hr>
+    <h3 id="def">Definitions</h3>
+
+High-level languages: abstract languages where you do not need to worry about
+the underlying hardware or managing memory. For example, Java.<br><br>
+
+Low-level languages: a language that is close to the hardware and where the
+programmer has to manage things like memory or registers. Assembly is one
+of the lowest level languages.<br><br>
+
+Coupling: refers to how much two separate classes rely on the details of
+one another. Think of this as: if I were to change this class, how many
+other classes would I have to change? If classes only pass data between
+each other, then changing the internal details shouldn't matter as long
+as the data remains the same. However if they rely on using each other's
+methods or variables, then changing those would affect other classes.
+High amounts of coupling like this is generally a poor design choice.<br><br>
+
+Cohesion: how much the methods and elements of a class belong together.
+This is subjective, but try to keep every class to a single purpose, and
+have all methods in the class serve this purpose. If something is very
+out of place, then it may have poor cohesion. Particularly true if
+you have one huge class that does everything; that is low cohesion.
+High cohesion is generally a good design choice.<br><br>
+    <hr>
+    <h3 id="test">Testing</h3>
+
+Unit testing: writing code to test other code. Specifically, unit tests
+are for only one unit of code, generally considered to be a method.
+In order to unit test, you can use a library like JUnit for Java, and write
+a unit test for every public method you have.<br><br>
+
+Code coverage: how much of the code is being tested by your unit test.
+If your unit tests run every line of code in your project, you would have
+a 100% code coverage. Higher code coverage is generally better though
+sometimes it is not possible to get very high, depending on your codebase.<br><br>
+
+Test Driven Development (TDD): a method of writing tests where you first create unit tests that
+test the functionality you want from your code, and then you write the
+code in order to pass those tests. There is debate over whether or not
+this method contributes to making code and design better.<br><br>
+
+Acceptance testing: testing against a specific set of requirements to
+determine whether the entire system satisfies the client's needs.
+    <hr>
+    <h3 id="oop">Object-oriented Programming</h3>
+
+    Concepts of OOP: <br><br>
+Encapsulation: encapsulated code is code that hides the internal details
+of how it works from other classes. The classes that use it don't need
+to see the internal details, so they are kept hidden and instead
+communicate through well-defined public methods. In practice, this means:
+keep all your variables and methods private unless they need to be public.<br><br>
+
+Abstraction: code should not necessarily be tied to any implementation of
+methods. That is, the method declarations should be enough to say what
+the class is going to do, and the implementation of the contract can be
+left to each consumer of the code. An example of this in Java is the List
+interface. The List interface tells what each method should do, but not how
+it needs to do it. The "how" aspect is left to the implementations, such as
+ArrayList or LinkedList.<br><br>
+
+Inheritance: a class should be able to be a specific kind of another class.
+The classic example is: assume we have an "Animal" class. We should then
+be able to create a "Dog" and "Cat" class that is a type of Animal. In
+Java, this is done by extension. A class can Extend another class, which
+makes a relationship of a class being a type of another class. For example
+a Cat IS-AN Animal. That means it can do everything an Animal can, plus
+specific other methods as decided.<br><br>
+
+Polymorphism: the most complex of the OOP traits. Polymorphism states that when
+inheritance is used, the compiler must figure out and call the most specific
+version of all methods being used. Going back to the inheritance example,
+if Animal has a makeSound() method, and Cat has a makeSound() method, then the
+following function call:<br><br>
+
+    <pre class="highlight"><code>
+Animal a = new Cat();
+a.makeSound();</code>
+    </pre>
+
+
+This must call Cat's makeSound() method, not Animal's.<br><br>
+
+OOP: A language is considered object oriented if it has the four above traits.<br><br>
+1: Allows encapsulation of classes.
+Java accomplishes by having private modifiers.<br><br>
+
+2: Allows for abstraction of objects.
+Java accomlishes with abstract classes and interfaces.<br><br>
+
+3: Allows for inheritance of classes.
+Java accomplishes by the extends keyword.<br><br>
+
+4: Implements polymorphism for classes.
+Java does implement this feature.<br><br>
+
+</div>
+
+
+</body>
+</html>

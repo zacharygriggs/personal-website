@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Zachary Griggs</title>
+        <link rel="stylesheet" href="index.css">
+        <meta name="robots" content="noindex,nofollow">
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src = "index.js"></script>
+    </head>
+    <body>
+        <ul class="sidemenu">
+            <li><a class="active" id="aboutme">About Me</a></li>
+            <li><a id="resume">Resume</a></li>
+            <li><a id="certifications">Certifications</a></li>
+            <li><a id="experience">Projects</a></li>
+            <li><a id="contact">Contact</a></li>
+            <!-- Guides are incomplete. Not ready for public yet. -->
+            <!-- <li><a id="ref">Reference Guides</a></li>-->
+        </ul>
+        <div class="content" id="aboutme-content">
+            <div class="title">
+                About Me
+            </div>
+            <div class="text">
+                <h3>Zachary Griggs</h3>
+                <div class="row">
+                    <div class="column1">
+                        I am a software engineer with expertise in developing and deploying cloud applications (specifically on AWS), 
+                        and am certified as an AWS Cloud Practitioner & AWS Developer Associate. The primary languages I work in are Java & Scala.<br><br>
+                        I am working for Northwestern Mutual, as a data engineer building cloud applications and pipelines.<br><br>
+                    </div>
+                    <div class="column2">
+                        <img src="resources/zach.png" alt="zach" style="width:80%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden content" id="certifications-content">
+            <div class="title">
+                Certifications
+            </div>
+            <div class="text">
+                Certifications can be validated using the codes below at: <a href="http://aws.amazon.com/verification">http://aws.amazon.com/verification</a>
+                <h3>AWS Certified Cloud Practitioner</h3>
+                Active from: June 10, 2021 - June 10, 2024<br>
+                Validation code: NJ9WQ3YLJF4QQDC3<br>
+                <h3>AWS Certified Developer Associate</h3>
+                Active from: June 10, 2021 - June 10, 2024<br>
+                Validation code: E1FWGWYLB14415CQ<br>
+            </div>
+        </div>
+        <div class="hidden content" id="resume-content">
+            <div class="title">
+                Resume
+            </div>
+            <div class="text">
+                <iframe src="resources/resume.pdf" width="100%" height="600px"></iframe>
+            </div>
+        </div>
+        <div class="hidden content" id="experience-content">
+            <div class="title">
+                Personal Projects
+            </div>
+            <div class="text">
+                <ul class="projectsmenu">
+                <li class="projectsmenuitem"><a class="active" id="seniordesign">Senior design</a></li>
+                <li class="projectsmenuitem"><a id="sdl">Software Development Lab</a></li>
+                <li class="projectsmenuitem"><a id="uoss">UOSS MUD</a></li>
+                <br>
+                <div id="seniordesign-content">
+                    <h3>Senior design</h3>
+                    For school, I worked with two partners to create a senior design project. Our project was to create an Android Smartphone
+                    app to automatically take photos of potentially-concerning skin lesions and perform analysis on them to find certain
+                    metrics, like surface area, and whether it is symmetric or not.<br><br>
+                    This app has a use-case for both doctors and patients; doctors could use it to quickly find hard-to-measure metrics like
+                    surface area in order to help with tracking and diagnosing, and patients could track their skin lesions at home without
+                    the need for a dermatologist appointment, which can have waiting times of several months.<br><br>
+                    The app is not open source, but you can watch a <a href="https://www.youtube.com/watch?v=xXNbYouva5w">video</a>
+                    of how the app works, and see our <a href="resources/senior-design-poster.jpg">poster</a> that we presented
+                    at the senior design show. This poster was printed on a large poster board<br><br>
+                    On the technical side of things, we hosted the images (encrypted) on AWS S3. We stored user accounts (password hashed)
+                    on AWS RDS in a MySQL database. The app was developed with Android Studio.<br><br>
+                    I would several things differently with this project if I was creating it now with my currently knowledge. Ideally, the UI would be improved to require
+                    fewer clicks to take/analyze photos, the image segmentation would be improved by doing post-processing of the photos,
+                    and I would use services like AWS Cognito rather than writing my own login system.
+                </div>
+                <div class="hidden" id="sdl-content">
+                    <h3>Software Development Lab</h3>
+                    In my Junior year at school, we had a class called software development lab, where we spent the year creating
+                    some kind of useful application for the school or a company.<br><br>
+                    Our group worked on a tool called MSOE About Time, which was capable of easily viewing hours worked per task and
+                    hours worked per sprint on Jira. This tool already existed, so we added functionality to it and fixed some issues with it.<br><br>
+                    My primary take-away from this project was learning to interact with external APIs that lacked documentation, and creating
+                    maintaining a full stack Node application.<br><br>
+                </div>
+                <div class="hidden" id="uoss-content">
+                    <h3>The Unofficial Squaresoft MUD</h3>
+                    I am a content developer and staff member for an in-production multiplayer RPG called the Unofficial Squaresoft MUD. I create
+                    new content using a modified version of the C language (called LPC) and provide general assistance to players.<br><br>
+                    This game is not open source, but you can learn more at the official website:<br><br>
+                    <a href="https://uossmud.sandwich.net/">See the website for this project</a>
+                </div>
+            </div>
+        </div>
+        <div class="hidden content" id="contact-content">
+            <div class="title">
+                Contact
+            </div>
+            <div class="text">
+                <button type="button" id="showInfoButton" onclick="showContactInfo()" class="button">Show contact information</button> 
+                <div class="text" id="contact-information-box">
+                </div>
+            </div>
+        </div>
+        <div class="hidden content" id="ref-content">
+            <div class="title">
+                Reference Guides
+            </div>
+            <div class="text">
+                These are programming references made for myself and others, as a quick resource to look at if you
+                forget how to do something, or just want to review the language basics.<br><br>
+                Choose one of the guides:<br>
+                <a href="reference/terms.html">Software Engineering Terms</a><br>
+                <a href="reference/java.html">Java</a><br>
+                <a href="reference/aws.html">AWS</a><br>
+                <a href="reference/sql.html">SQL</a><br>
+                <a href="reference/assembly.html">Assembly</a><br>
+                <a href="reference/rest.html">REST</a><br>
+            </div>
+        </div>
+    </body>
+</html>
+

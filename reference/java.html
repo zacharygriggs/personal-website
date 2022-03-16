@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Reference</title>
+    <link rel="stylesheet" href="../index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="title">
+    Java Reference
+</div>
+<div class="text">
+
+    <p><a href="../index.html"><< Back to main site</a> </p>
+    <hr>
+
+    <p><a href="#overview">Overview</a></p>
+
+    <p><a href="#primitive-types">Primitive Types</a></p>
+
+    <p><a href="#common-objects">Common Objects and Classes</a></p>
+
+    <p><a href="#basic-io">Basic IO</a></p>
+
+    <p><a href="#conversions">Converting between types</a></p>
+
+    <p><a href="#comments">Comments</a></p>
+
+    <p><a href="#math">Math</a></p>
+
+    <p><a href="#harder-math">Harder math</a></p>
+
+    <p><a href="#if-statements">If statements</a></p>
+
+    <p><a href="#loops">Loops</a></p>
+
+    <p><a href="#arrays">Arrays</a></p>
+    <hr>
+    <h3 id="overview">Overview</h3>
+
+    Java is a very high level language. Java is contained in .java source files, each of which should contain
+    one top-level class. All java code must be in a class, and inside the class, the code you want to run
+    should be placed in the main method:
+    <pre class="highlight"><code>
+public static void main(String[] args) {
+    ... code here ...
+}
+    </code>
+    </pre>
+    The main method should create and use other classes as needed. Classes are created by a constructor:
+    <pre class="highlight"><code>
+public class MyClass { // class declaration
+    public MyClass() { // class constructor
+        ... code here ...
+    }
+}</code>
+    </pre>
+    And to call this constructor:
+    <pre class="highlight"><code>
+MyClass c = new MyClass();
+    </code>
+    </pre>
+    When compiled, java code will be built into .class files. This contains the optimized java code of the program.
+    Then it can be compiled into a .jar. A .jar is a runnable version of the entire java program, and can be executed
+    by the java -jar command in the command line.<br><br>
+    When a java program is ran, it will be converted to bytecode and the bytecode interpreted by the JVM. The Java Virtual
+    Machine is a program that runs on your computer and can interpret code from java bytecode to operating-system specific
+    code. This ensures that the program will run essentially the same on any operating system you use to run it.
+    <hr>
+    <h3 id="primitive-types">Primitive Types</h3>
+
+    These are the available primitive data types in Java. Primitives do not have methods associated with
+    them, and are simple data stores. They do not store a reference in memory, but rather the actual value being stored.<br>
+    <pre class="highlight"><code>
+        int (stores whole numbers, -2.14billion to 2.14billion)
+        double (stores decimal numbers)
+        char (stores single characters, for example 'A', 'B')
+        boolean (stores either true or false)
+        long (like an int, but stores numbers of higher magnitude)
+        float (like a double, but less precise)
+        short (like an int, but stores numbers of lower magnitude)
+        byte (stores a single byte, which is 8 bits of data, or a number up to 255)</code>
+    </pre>
+
+    <hr>
+    <h3 id="common-objects">Common Objects and Classes</h3>
+
+    These are some Java classes that you will frequently use, especially in beginner-level java code. In Java, when an
+    object
+    variable is defined, the variable stores a reference, which redirects to the actual object in memory.<br>
+    <pre class="highlight"><code>
+        String (holds words, for example "Hello, this is a string!")
+        Scanner (used to take in user input)
+        Random (used to generate random numbers)
+        Math (static class used to perform more difficult math operations)</code>
+    </pre>
+
+    <hr>
+    <h3 id="basic-io">Basic I/O</h3>
+
+    In this case, Output is displaying messages or data to the user and Input is receiving messages or data from the
+    user.<br>
+    <pre class="highlight"><code>
+        // output
+        System.out.println("Hello world!"); // display a message to user via command line
+        JOptionPane.showMessageDialog(null, "hello world!"); // display a message via pop-up
+
+        // input
+        Scanner in = new Scanner(System.in);
+        String userInput = in.nextLine();</code>
+    </pre>
+    Note: nextLine() is generally preferred due to unexpected behavior regarding the new-line character with other
+    next methods. Such as nextInt() can accidentally interpret the newline character as part of the int and throw
+    an exception. I always use nextLine() and then convert the result to the data-type I want.
+
+    <hr>
+    <h3 id="conversions">Converting between types</h3>
+
+    When the program is converting from a small data type to a large data type (such as int to long), then the
+    conversion will happen
+    automatically because no data would be lost by the conversion. This is called implicit conversion.<br>
+    <pre class="highlight"><code>
+        int x = 5;
+        long y = x;</code>
+    </pre>
+    When we're going the other way, it would be possible to lose data. For example, if we have a long that is larger
+    than the
+    maximum value of an int, then the int would not be able to store it if converted. For this reason, we have to make
+    an explicit cast. This makes the compiler know that we actually want to convert it and we know the consequences of
+    converting it.
+    <pre class="highlight"><code>
+        long x = 5;
+        int y = (int)x;</code>
+    </pre>
+    Explicit casting is done by placing the data type you wish to convert for, in parenthesis, immediately before the
+    value
+    that we are converting. In the example above, we convert x into (int) and store it into the variable y.<br><br>
+    Another example is converting int and double. Double stores decimal places (in other words: more data), so going
+    from int to double
+    is fine. Going from double to int loses the decimal places, so it must be done explicitly, and at the risk of losing
+    information if
+    the decimal part is meaningful.<br><br>
+    The exception to this is converting a String into a numeric data type. In this case, use the following methods:
+    <pre class="highlight"><code>
+        String myString = "5"; // declare string
+        int numString = Integer.parseInt(myString); // use the string as an int
+        double doubleString = Double.parseDouble(myString); // use the string as a double.</code>
+    </pre>
+
+    <hr>
+    <h3 id="comments">Comments</h3>
+
+    Comments are lines of code that will not be executed. There are three general formats:<br>
+    <pre class="highlight"><code>
+        // single line comment
+
+        /*  multi
+            line
+        */  comment
+
+        /**
+          * javadoc comments
+          * these appear before methods and classes, summarizing the purpose of it
+          */ and documenting any parameters or return values.</code>
+    </pre>
+
+    <hr>
+    <h3 id="math">Math</h3>
+
+    Simple arithmetic operations will be performed by Java.<br>
+    <pre class="highlight"><code>
+        addition (+)
+        subtraction (-)
+        multiplication (*)
+        division (/)
+        modulus(%)</code>
+    </pre>
+    Take note of what is NOT supported. The carrot symbol (^) does not perform a power operation. Instead this will
+    perform Bitwise XOR which will compile, but absolutely will not perform what you want it to.<br><br>
+    Math can be performed on variables or constant values. For example:
+    <pre class="highlight"><code>
+        int x = 2 + 2; // evaluates to 4.
+        int y = x + 2; // evaluates to 6.
+        int z = x + y; // evaluates to 10.</code>
+    </pre>
+    Beware of the so-called "integer division". When dividing two integers, the remainder will be IGNORED.
+    <pre class="highlight"><code>
+        int x = 5 / 2; // what does this evaluate to?
+        // do you think it's 2.5 because 5/2 = 2.5?
+        // if so, you fell for integer division.
+        // 5 and 2 are integers, the division of them
+        // will also be an integer and ints cannot store
+        // decimals, so this evaluates to 2.
+
+        double y = 5 / 2; // this still evaluates to 2
+        // 5 is an int and 2 is an int, so the result will be an int
+        // even though we convert and store it in a double.
+
+        double z = (double)5 / 2; // now this divides a double by an int,
+        // which gives the result of a double, so this will be 2.5.
+        // when there are two different types of data, like int and double,
+        // the result will be the type that stores more information.
+        // in this case, double.</code>
+    </pre>
+
+    <hr>
+    <h3 id="harder-math">Harder math</h3>
+
+    The Math class contains many methods that can be used for more complex operations. Among the most useful are the
+    power and square root methods. Additionally, even though it is a simple operator, the modulus operator
+    may be difficult to understand. Modulus performs a standard division, and then stores the remainder as the result
+    rather than the quotient.
+    <pre class="highlight"><code>
+        double root = Math.sqrt(16); // evaluates to 4.
+        double power = Math.pow(3, 2) // evaluates to 9. this is 3 to the power 2.
+        double modulus = 5 % 2; //evaluates to 1. 5/2 gives 2 remainder 1, the remainder is taken as the result</code>
+    </pre>
+
+    <hr>
+    <h3 id="if-statements">If statements</h3>
+
+    Makes a decision based on some given condition. Syntax:<br>
+    <pre class="highlight"><code>
+        if(condition) {
+            //then actions
+        } elseif (another condition) {
+            //elseif actions
+        } else {
+            //else actions
+        }</code>
+    </pre>
+    Example of how to use in code:
+    <pre class="highlight"><code>
+        Scanner in = new Scanner(System.in); // prepare to get user input
+        String inputString = in.nextLine(); // gets a line of input from user
+        int myNum = Integer.parseInt(inputString); // convert entered line to a number
+
+        if(myNum > 10) {
+            System.out.println("Number was more than 10");
+        } elseif (myNum < 5) {
+            System.out.println("Number was less than 5");
+        } else {
+            System.out.println("Number was between 5 and 10 (inclusive)");
+        }</code>
+    </pre>
+    For comparison operators, use the following for numbers:
+    <pre class="highlight"><code>
+        == (equals)
+        != (not equals)
+        &gt; (greater)
+        &lt; (less)
+        &gt;= (greater or equal)
+        &lt;= (less or equal)
+    </code>
+    </pre>
+
+    <hr>
+    <h3 id="loops">Loops</h3>
+
+    There are three formats of loops. For loops are useful for looping a specific number of times, while loops are useful
+    for looping while a specific condition remains true, and do while loops are just like while loops, but they happen
+    at least once, even if the condition is false to begin with.
+    <pre class="highlight"><code>
+        for(int i = 0; i < 10; i++) {
+            // code here happens 10 times
+        {
+
+        while(n == 10) {
+            // code here happens as long as n = 10.
+        }
+
+        do {
+            // code here happens at least once, and then as long as n = 10
+        } while (n == 10)</code>
+    </pre>
+    There's also a special type of for loop called a for-each loop, which can loop over object that contain other objects.
+    For example, Lists.
+
+    <pre class="highlight"><code>
+        for(String s : myList) {
+            // in here, you can use "s" as a string, where s will iterate through all strings in the list.
+        }</code>
+    </pre>
+
+    <hr>
+    <h3 id="arrays">Arrays</h3>
+
+    Arrays are like variables, except they store multiple values instead of one value.
+    <pre class="highlight"><code>
+        String[] sArray = new String[5]; // a string array that contains 5 elements
+        sArray[0] = "hello"; // sets the first element of the array to hello. Arrays start at 0
+        sArray[4] = "world"; // sets the last element of the array to world. Arrays end at length-1
+        int len = sArray.length; // sets len to 5. All arrays have a property called length.</code>
+    </pre>
+
+    Lists are very similar to arrays, except they can increase in size. Arrays can not increase in size unless they are
+    re-allocated completely. Lists also have methods that make it easier to use, rather than just acting as a
+    typical variable.<br><br>
+    List is the interface type, so you should declare with the List class to have it as abstract as possible,
+    but you'll need to instantiate with one of the subclasses: generally either ArrayList or LinkedList.<br><br>
+    What I have found is that you should always use ArrayList unless you are implementing some specific
+    kind of data structure that uses LinkedList efficiently, like a queue or a stack.
+
+    <pre class="highlight"><code>
+        List&lt;String&gt; myList = new ArrayList<>;
+        myList.add("word1");
+        myList.add("word2");
+        myList.add("word3");
+
+        int len = myList.size(); // returns 3, because there are 3 items
+        String firstWord = myList.get(0); // returns "word1", the first item
+        String lastWord = myList.get(2); // returns "word3", the last word
+
+        myList.remove(1); // remove the middle element
+        // See the full javadoc of what you can do:
+        // https://docs.oracle.com/javase/8/docs/api/java/util/List.html
+    </code>
+    </pre>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AWS Reference</title>
+    <link rel="stylesheet" href="../index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="titlebar" id="top">
+    AWS Reference
+</div>
+<div class="text">
+
+    <p><a href="../index.html"><< Back to main site</a> </p>
+    <hr>
+
+    <p><a href="#summary">AWS Service Summary</a></p>
+
+    <p><a href="#concepts">Cloud Concepts</a></p>
+
+    <p><a href="#s3">S3 Specifics</a></p>
+
+    <p><a href="#lambda">Lambda Specifics</a></p>
+
+    <p><a href="#dynamo">DynamoDB Specifics</a></p>
+
+    <p><a href="#ec2">EC2 Specifics</a></p>
+
+    <p><a href="#iam">IAM Specifics</a></p>
+
+    <p><a href="#rds">RDS Specifics</a></p>
+
+    <p><a href="#red">Redshift Specifics</a></p>
+
+    <p><a href="#route">Route53 Specifics</a></p>
+
+    <p><a href="#cw">CloudWatch Specifics</a></p>
+
+    <p><a href="#ec">ElastiCache Specifics</a></p>
+
+
+    <hr>
+
+    <h3 id="summary">AWS Service Summary</h3>
+
+    <h4>This is a brief summary of AWS's most commonly used services.</h4>
+
+    S3 (simple storage service). S3 provides serverless, extremely durable,
+    cheap, and available storage.<br><br>
+
+    Lambda is a serverless compute service. You can upload code to Lambda
+    from a variety of languages and have it run when triggered by
+    other AWS events.<br><br>
+
+    DynamoDB is a NoSQL key/value store. Can create tables with a primary
+    key (partition key) and a secondary primary key (sory key) and
+    add data without need for schema.<br><br>
+
+    EC2 is a remote server service. You can create an EC2 instance using
+    specific operating systems and SSH into it and run code on it.<br><br>
+
+    IAM (identity access management) manages who can access which resources.<br><br>
+
+    RDS is a relational database service which can host instances of
+    database servers. You can connect to the DB through JDBC connectors.<br><br>
+
+    Redshift is a relational data-warehousing service. The difference
+    between this and a database is that a data warehouse stores
+    data for later analytics, where a database stores for use in transactions.<br>
+
+    CloudFront sets up a content distribution network for other AWS
+    resources so that it quickly distributes to many locations in the world<br><br>
+
+    Route53 allows website domain name registration for extremely cheap,
+    and then directing requests to other AWS hosting services<br><br>
+
+    CloudWatch is a logging service that logs results from many other<br><br>
+    services like Lambda.
+
+    ElastiCache is an in-memory caching service that can improve the performance
+    for apps with heavy workloads<br><br>
+
+    API Gateway allows routing of HTTP request traffic to certain api endpoints
+    such as Lambda, or your own API endpoint<br><br>
+
+    X-Ray visualizes serverless apps by showing the steps of the app.<br><br>
+
+    SQS (simple queueing service) allows for a cloud message queue. Messages can be places
+    in the queue, and then polled from them. Guarantees messages are received at least once,
+    but does not guarantee order by default - can be configured to be FIFO.<br><br>
+
+    SNS (simple notification service) allows push notifications to various groups from the cloud.
+    Subscription based and push based.<br><br>
+
+    SES (simple e-mail service) allows sending e-mails from the cloud. This is not subscription based like SNS is.
+    Push based.<br><br>
+
+    Elastic Beanstalk allows simple deployment of web apps using things like node.js and docket.<br><br>
+
+    Elastic Cloud Compute
+
+    Alexa
+
+    KMS
+
+    Polly is Amazon's text-to-speech service.<br><br>
+
+    <hr>
+
+    <h3 id="concepts">Cloud Concepts</h3>
+
+    <h4>Some of the terms critical to understanding the AWS platform</h4>
+
+    The word "cloud" simply refers to running servers/code on someone else's
+    hardware, rather than yours. For example, instead of running a database
+    on your company's local hardware, you'd run it on AWS's hardware. The benefit
+    of this is that AWS specializes in this kind of thing, which minimizes
+    the cost, compared to building your own inhouse solution.<br><br>
+
+    Availability refers to the amount of up-time of a specific service.
+    High availability means that the service will almost always be running
+    when you try to use it.<br><br>
+
+    Durability refers to the data remaining the same as when you put it
+    in the database. Highly durable data will be the same even when you
+    use it years later. Low durability means the data may be corrupted<br><br>
+
+    Realms are specific zones you can choose to run AWS services on.
+    Some services go across all realms, some don't.
+    Just always use US EAST 1 (N Virginia) unless you have a reason not to.<br><br>
+
+    Multi-AZ refers to the trait of some services to spread data across
+    multiple data centers for recovery. In this way, even if a data center
+    gets destroyed, there will be other backups and your data remains safe.<br><br>
+
+    Serverless refers to services which are highly abstract, to the point
+    where you don't need to worry about what instance of server you
+    are running, or where in the world you are running it. All you need
+    to worry about is your code.<br><br>
+
+    Edge locations refer to the positions in the world where AWS can be
+    accessed. Generally major cities will be edge locations.
+    Many edge locations minimizes latency.
+
+    
+    <hr>
+
+
+    <h3 id="s3">S3 Specifics</h3>
+
+    <h4>Purpose</h4>
+    S3 is a simple file storage. Emphasis on simple. It is amazingly easy
+    to use, and very low cost. On a personal level, it can be used as your
+    backup drive (it will likely cost less than buying an external drive)
+    You can also host websites very easily with it; all you need to do is
+    upload an index.html and error.html.
+    <h4>Structure</h4>
+    Base-level "folders" are called Buckets. Each bucket must be UNIQUE among all
+    users of S3, and has additional naming restrictions - for example, must
+    be all lowercase.<br><br>
+
+    Inside the buckets, you can place additional folders and files.
+    Each file added will be represented as a "key" - a string which
+    directly maps to this file in S3. S3 actually has no concept of
+    folders inside buckets, it is just a visualization to make it easier
+    for us. For example the key "myFolder/myFile.txt" is valid, and
+    would be represented by a file called myFile.txt inside a folder, myFolder<br><br>
+
+    A path to an S3 file would look something like this:
+    S3://mybucketname/myFolder/myFile.txt<br><br>
+
+    All files on S3 are private by default. They can be made public by
+    first making the bucket public, then making each individual file
+    public.
+
+    <h4>Website hosting</h4>
+    A bucket must be public to host a website. Hosting is quite simple.
+    Just open the bucket, select Properties, open Static Website Hosting,
+    enable Use This Bucket To Host A Website, and specify your index
+    and error html files.
+
+    <h4>Permissions</h4>
+    In the Permissions tab of a bucket, you can specify a Policy to restrict
+    or give access to the bucket. Additionally, CORS can be configured
+    to allow cross-origin requests (i.e. allow someone else or another service
+    to connect to and use s3) which is off by default.
+
+    None of these permissions apply if the bucket is public, obviously.<br><br>
+
+    
+    <hr>
+
+    <h3 id="lambda">Lambda Specifics</h3>
+
+    <h4>Purpose</h4>
+
+    Lambda is a serverless way to run code on the cloud. This service is highly abstract
+    and allows you to run code without worrying about servers at all.<br><br>
+
+    Lambda is extremely low cost, allowing 1 million requests before you start getting charged at all.
+    After that, each million requests costs 20 cents.<br><br>
+
+    Lambda scales out, meaning that each function is independent, so whether you run a million at
+    the same time, or only one, the performance will still be very high. However it does not scale up -
+    that is, you specify a memory usage amount and it will not exceed this memory usage.<br><br>
+
+    Lambda response to events coming from various sources on Amazon, or can be called directly.
+
+    <h4>Event sources</h4>
+
+    The following services can trigger Lambda events:<br><br>
+    - API Gateway<br>
+    - IOT<br>
+    - Alexa SKills Kit <br>
+    - Alexa Smart Home<br>
+    - CloudFront<br>
+    - CloudWatch events<br>
+    - CloudWatch Logs<br>
+    - CodeCommit<br>
+    - Cognito Sync Trigger<br>
+    - DynamoDB<br>
+    - Kinesis<br>
+    - S3<br>
+    - SNS<br>
+
+    <h4>Supported languages</h4>
+
+    You can write code directly into Lambda, upload code from your computer, or link code that is uploaded in S3.<br><br>
+
+    You can use code from the following languages: Python, Java, C#, Go, and NodeJS. If using Java, you can upload a Jar containing the lambda handler.<br><br>
+
+    <h4>Versions</h4>
+
+    If you make a lambda function that works properly and you want to save it for future use without messing it up, you can save a version of this function.
+    The default version is called $LATEST, and this is the only version that can be changed. If you publish another version, it cannot be changed at all.<br><br>
+
+    You can link directly to this function to allow code to call the specific function version, or you can set up a redirect to
+    path different traffic to different versions. You can split between two functions (and only two), but you cannot split between
+    a specific version and $LATEST.<br><br>
+
+    <h4>Debugging</h4>
+
+    You can debug a Lambda function by using AWS CloudWatch to view the events, which will report the logs from the event to you,
+    and you can also use AWS X-RAY which is a service used to debug serverless applications. When X-RAY is used, it will
+    visualize the serverless application as a step function.
+
+    
+    <hr>
+
+    <h3 id="dynamo">DynamoDB Specifics</h3>
+
+    eventually consistent (within 1 sec), strongly consistent
+    read capacity units (4x), write capacity units (1x), or allows double that for eventually consistent.
+    DAX dynamodb accelerator, 10x read speed by caching, eventually consistent.
+    ACID
+    TTL: time before marked for deletion
+    Cache can lead to stale data, write-through costs more but no stale data
+    backed up by ssd
+    spread through 3 datacenters
+    iam permissions work on this
+    indecies speed up queries
+
+    local secondary: made when creating table, no modifications. same partition key, diffrent sort key.
+    global secondary: whenever you want, edit it, different partition/sort key.
+    scanIndexForward determines query order
+    scan dumps all data then filters it using projection expression, slow.
+    query/batchget is more efficient
+    set small page size for less impact from scan/query
+    scan returns 1mb at a time
+    query searches using primary key only
+
+
+
+    <h4>Purpose</h4>
+    DynamoDB is a No-SQL database. It does not enforce a specific schema to add data to it. The only required parts are the
+    partition key and (if desired), a sort key. These are essentially the primary keys and can be selected on.<br><br>
+
+    <h4></h4>
+
+    
+    <hr>
+
+
+    <h3 id="ec2">EC2 Specifics</h3>
+
+    <h4>Purpose</h4>
+    EC2 is a service to host servers, without worrying about the actual hardware
+    details, and at highly flexible prices. The things you can do with EC2
+    are highly varied, since it is just an instance of an operating system running.
+    Linux is the most common system available, but there are others as well.
+    The servers are protected by a key pair, which is needed to SSH into it.
+
+    <h4>Pricing</h4>
+    One of the most interesting things about EC2 is the pricing model. This really
+    lets you optimize cost for your use case. Here are the pricing models and
+    some use cases.<br><br>
+
+    1: On-Demand. Reserve an instance when you need it, and pay for what you use.
+    Much more expensive per hour, but you're not locked into anything. An example
+    would be, a job that needs to run every day at 5 PM. Reserve for however long
+    it needs to take, then tear down. Or, if you are trying to determine whether
+    EC2 is worth it and you just want to give it a try.<br><br>
+
+    2: Spot. An unusual pricing model, where you tell Amazon your maximum price
+    you want to pay for an instance, and the instance is automatically reserved
+    when the price falls below your max price. Like bidding. Prices of instances
+    drop off at off-hours like late night when many people aren't using them.
+    A possible use case is a data consumption job that should probably run once
+    per day but it doesn't matter when it runs, and missing a day or two is no
+    big deal.<br><br>
+
+    3: Reserved. This would be considered the "normal" pricing model in other
+    places. You pay for a server contract for some time (maybe a year). The
+    hourly price is discounted heavily from on-demand, but you are locked
+    into it. A use case would be hosting a static website through EC2. You
+    never want it to go down, so you would want a contract-based model.<br><br>
+
+    4: Dedicated host. This one has very specific use cases, you will probably
+    never need to use it unless you fall under this case. A dedicated host
+    guarantees they will not mix in your hardware server with other servers.
+    Otherwise, it's like reserved. This is for people who fall under government
+    regulations on their data, like medical institutions that fall under HIPAA.
+
+    <h4>EBS</h4>
+    EBS (Elastic Block Store) is a service within EC2. EBS allows for data storage on
+    persistent SSD or magnetic disk drives, much like they are stored on our
+    computers. You can choose a type of disk that is optimized for your workload.<br><br>
+
+    SSD:<br>
+
+    1: General purpose. Designed for systems with less than 10,000 input/output operations per second (IOPS)<br>
+
+    2: Provisioned IOPS. Designed for systems with more than 10,000 IOPS.<br>
+
+    Magnetic:<br>
+
+    1: Throughput optimized. Provides low cost for a high amount of data access.<br>
+
+    2: Cold HDD. Designed for data that is not accessed very much.<br>
+
+    3: Bootable magnetic. The only drive here that you can boot from. It's old and not recommended.<br>
+
+    <h4>Load balancers</h4>
+
+    Elastic Load Balancer is another service that applies to EC2. There are two kinds of load balancers; application,
+    and network.<br><br>
+
+    Application load balancers help redirect HTTP traffic. It can distribute this
+    HTTP traffic across multiple services, such as EC2 or Lambda. This helps route traffic
+    to the intended destination<br><br>
+
+    For an app load balancer redirection, an error or 504 tells that the app cannot scale to the level needed.
+    The x-forwarded-for header shows the public IP that requested the resource.
+
+    Network load balancing exists to increase performance, and it operates on the Network layer, such
+    as TCP/UDP. This routes traffic between different private clouds and has extremely low latency.
+
+    
+    <hr>
+    <h3 id="iam">IAM Specifics</h3>
+
+    least access principle
+    one key/pair per dev. cant see secret after creation time.
+    role: universal, can attach to things like ec2.
+    need to open port 3306 in security group to allow rds to talk to ec2.
+    policies store specific permissions
+    role is kind of like a user with no credentials that can be reused
+    can attach policies to roles
+    integrates with various login systems
+    <h4>Purpose</h4>
+
+    
+    <hr>
+
+    <h3 id="rds">RDS Specifics</h3>
+
+    <h4>Purpose</h4>
+
+    
+    <hr>
+
+
+    <h3 id="red">Redshift Specifics</h3>
+
+    <h4>Purpose</h4>
+
+    
+    <hr>
+
+
+    <h3 id="route">Route53 Specifics</h3>
+
+    <h4>Purpose</h4>
+
+    
+    <hr>
+
+
+    <h3 id="cw">CloudWatch Specifics</h3>
+
+    <h4>Purpose</h4>
+
+    
+    <hr>
+
+    <h3 id="ec">ElastiCache Specifics</h3>
+
+    memcached, widely adopted not backed up, smaller. multithreaded, scales out. object-based like a pool that grows/shrinks.
+    redis: complex, objecs, key value store, backups. sorting/ranking. like a database.
+    <h4>Purpose</h4>
+
+    
+    <hr>
+
+</div>
+</body>
+</html>
